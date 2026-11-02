@@ -1,0 +1,42 @@
+.spinner {
+  --color-1: var(--color-surface, #fff);
+  width: calc(16 * var(--size));
+  height: calc(16 * var(--size));
+  border: calc(2 * var(--size)) solid var(--color-1);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.sm {
+  --size: 1px;
+}
+
+.md {
+  --size: 1.5px;
+}
+
+.lg {
+  --size: 2px;
+}
+
+.primary {
+  --color-1: var(--omni-primary);
+}
+
+.secondary {
+  --color-1: var(--omni-secondary-text);
+}
+
+
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

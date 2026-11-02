@@ -1,0 +1,213 @@
+{
+  "data": [
+    {
+      "status": "published",
+      "created_date": "2026-10-26T07:00:00.000Z",
+      "modified_date": "2026-10-26T07:00:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-26T07:00:00.000Z",
+        "modified_date": "2026-10-26T07:00:00.000Z",
+        "message_type": "simple",
+        "title": "Назначена новая задача #31",
+        "description": "Вам назначена задача «Подготовить отчёт за квартал». Срок: 20 октября.",
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "📝"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000031"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-26T06:55:00.000Z",
+      "modified_date": "2026-10-26T06:55:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-26T06:55:00.000Z",
+        "modified_date": "2026-10-26T06:55:00.000Z",
+        "message_type": "simple",
+        "title": "Отпуск согласован #32",
+        "description": "Ваш отпуск с 3 по 17 ноября согласован руководителем.",
+        "picture": null,
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000032"
+      },
+      "is_read": true
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-26T06:50:00.000Z",
+      "modified_date": "2026-10-26T06:50:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-26T06:50:00.000Z",
+        "modified_date": "2026-10-26T06:50:00.000Z",
+        "message_type": "simple",
+        "title": "Опрос: как вам новый корпоративный портал? #33",
+        "description": null,
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "📊"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000033"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-26T06:45:00.000Z",
+      "modified_date": "2026-10-26T06:45:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-26T06:45:00.000Z",
+        "modified_date": "2026-10-26T06:45:00.000Z",
+        "message_type": "simple",
+        "title": "С днём рождения, Анна! #34",
+        "description": "Команда поздравляет вас и желает успехов в новом году жизни.",
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "🎉"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000034"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-26T06:40:00.000Z",
+      "modified_date": "2026-10-26T06:40:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-26T06:40:00.000Z",
+        "modified_date": "2026-10-26T06:40:00.000Z",
+        "message_type": "simple",
+        "title": "Обновлён регламент информационной безопасности #35",
+        "description": "Ознакомьтесь с новой версией регламента до конца недели.",
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "🔒"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000035"
+      },
+      "is_read": true
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-25T07:00:00.000Z",
+      "modified_date": "2026-10-25T07:00:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-25T07:00:00.000Z",
+        "modified_date": "2026-10-25T07:00:00.000Z",
+        "message_type": "simple",
+        "title": "Плановые технические работы #36",
+        "description": "В субботу с 02:00 до 04:00 сервис будет недоступен.",
+        "picture": null,
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000036"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-25T06:55:00.000Z",
+      "modified_date": "2026-10-25T06:55:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-25T06:55:00.000Z",
+        "modified_date": "2026-10-25T06:55:00.000Z",
+        "message_type": "simple",
+        "title": "Напоминание о встрече #37",
+        "description": "Совещание отдела начнётся через 30 минут в переговорной «Север».",
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "📅"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000037"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-25T06:50:00.000Z",
+      "modified_date": "2026-10-25T06:50:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-25T06:50:00.000Z",
+        "modified_date": "2026-10-25T06:50:00.000Z",
+        "message_type": "simple",
+        "title": "Заявка одобрена #38",
+        "description": "Ваша заявка на оборудование одобрена и передана в закупку.",
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "✅"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000038"
+      },
+      "is_read": true
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-25T06:45:00.000Z",
+      "modified_date": "2026-10-25T06:45:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-25T06:45:00.000Z",
+        "modified_date": "2026-10-25T06:45:00.000Z",
+        "message_type": "simple",
+        "title": "Новый документ на подпись #39",
+        "description": null,
+        "picture": {
+          "main": null,
+          "preview": null,
+          "cover": null,
+          "icon": null,
+          "emoji": "📄"
+        },
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000039"
+      },
+      "is_read": false
+    },
+    {
+      "status": "published",
+      "created_date": "2026-10-25T06:40:00.000Z",
+      "modified_date": "2026-10-25T06:40:00.000Z",
+      "chit": {
+        "status": "published",
+        "created_date": "2026-10-25T06:40:00.000Z",
+        "modified_date": "2026-10-25T06:40:00.000Z",
+        "message_type": "simple",
+        "title": "Вы в числе лучших сотрудников месяца #40",
+        "description": "Поздравляем! Спасибо за вклад в общий результат команды.",
+        "picture": null,
+        "message_id": "3fa85f64-5717-4562-b3fc-000000000040"
+      },
+      "is_read": false
+    }
+  ],
+  "info": {
+    "api_version": "0.1.0",
+    "count": 10,
+    "total": 50,
+    "page": 4,
+    "page_size": 10
+  }
+}

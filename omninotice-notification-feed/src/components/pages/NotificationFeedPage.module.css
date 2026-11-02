@@ -1,0 +1,43 @@
+.page {
+    position: relative;
+    --omni-main-bg: var(--color-surface, #f5f6f9);
+    --omni-primary: var(--color-primary, #487bfe);
+    --omni-primary-hover: var(
+        --color-primary-hover,
+        hsl(from var(--omni-primary) h s calc(l - 10))
+    );
+    --omni-primary-text: var(--color-text-primary, #0c151d);
+    --omni-secondary-text: var(--color-text-secondary, #767a7f);
+    --omni-breadcumbs-icon-color: var(--color-icon, #4a5665);
+    --omni-sidebar-box-shadow: var(
+        --color-shadow,
+        0px 0px 1px 0px #00000066,
+        -8px 8px 24px -8px #00000029
+    );
+    --omni-state-box-shadow: var(--color-shadow, 0px 0px 1px #0000004D);
+    --omni-nf-bg: var(--color-surface, #ffffff);
+    --omni-nf-bg-hover: var(
+        --color-bg-hover,
+        color-mix(in srgb, var(--omni-primary) 12%, white)
+    );
+    --omni-nf-icon: var(--omni-primary);
+    --omni-nf-icon-error: var(--color-danger, #e65443);
+    --omni-nf-icon-bg: var(
+        --color-primary-soft,
+        color-mix(in srgb, var(--omni-nf-icon) 25%, white)
+    );
+    --omni-nf-icon-bg-error: var(
+        --color-danger-soft,
+        color-mix(in srgb, var(--omni-nf-icon-error) 25%, white)
+    );
+    --omni-border-color: var(--color-border, #eceef4);
+    --omni-border-hover: var(--color-text-primary, #0c151d);
+    --omni-radius: var(--radius-md, 8px);
+    --omni-container-padding-inline: 24px 20px;
+    --omni-nf-icon-container-size: 56px;
+    --omni-nf-icon-chevron-size: 24px;
+    --omni-tabs-margin-block: 32px;
+    --omni-transition: 0.15s ease-in;
+
+    background-color: var(--omni-main-bg);
+}

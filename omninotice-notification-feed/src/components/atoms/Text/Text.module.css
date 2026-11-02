@@ -1,0 +1,67 @@
+.text {
+  margin: 0;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+/* variant */
+.primary {
+  color: var(--omni-primary-text);
+}
+
+.secondary {
+  color: var(--omni-secondary-text);
+}
+
+.paper {
+  color: white;
+}
+
+/* size */
+.sizeXs {
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--line-height-xs, 16px);
+}
+
+.sizeSm {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--line-height-sm, 20px);
+}
+
+.sizeMd {
+  font-size: var(--font-size-md, 16px);
+  line-height: var(--line-height-md, 24px);
+}
+
+.sizeLg {
+  font-size: var(--font-size-lg, 18px);
+  line-height: var(--line-height-lg, 20px);
+}
+
+.sizeXl {
+  font-size: var(--font-size-xl, 24px);
+  line-height: var(--line-height-xl, 40px);
+}
+
+.sizeXxl {
+  font-size: var(--font-size-xxl, 28px);
+  line-height: var(--line-height-xxl, 40px);
+}
+
+/* weight */
+.weightRegular {
+  font-weight: 400;
+}
+
+.weightMedium {
+  font-weight: 500;
+}
+
+.weightSemibold {
+  font-weight: 600;
+}
+
+.weightBold {
+  font-weight: 700;
+}

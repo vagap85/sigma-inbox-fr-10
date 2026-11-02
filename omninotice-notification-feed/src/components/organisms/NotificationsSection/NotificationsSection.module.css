@@ -1,0 +1,17 @@
+.section {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+}
+
+.action {
+    margin-left: auto;
+}

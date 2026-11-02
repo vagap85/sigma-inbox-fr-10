@@ -1,0 +1,21 @@
+.icon {
+  overflow: hidden;
+  border-radius: calc(var(--omni-radius) + 4px);
+  width: var(--omni-nf-icon-container-size);
+  height: var(--omni-nf-icon-container-size);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background-color: var(--omni-nf-icon-bg);
+  color: var(--omni-nf-icon);
+}
+
+.image {
+  object-position: center;
+  user-select: none;
+}
+
+.image[data-type="image"] {
+  width: var(--omni-nf-icon-container-size);
+  height: var(--omni-nf-icon-container-size);
+}

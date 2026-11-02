@@ -1,0 +1,30 @@
+.state {
+    display: grid;
+    place-items: center;
+    padding: 40px;
+    background-color: var(--omni-nf-bg);
+    box-shadow: var(--omni-state-box-shadow);
+    border-radius: calc(var(--omni-radius) + 4px);
+}
+
+.error {
+    --omni-nf-icon: var(--omni-nf-icon-error);
+    --omni-nf-icon-bg: var(--omni-nf-icon-bg-error);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 24px;
+}
+
+.title,
+.subtitle {
+    text-align: center;
+}
+
+.button {
+    margin-top: 16px;
+}
