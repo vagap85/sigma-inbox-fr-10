@@ -1,235 +1,110 @@
-# omninotice-notification-feed
+# Sigma Inbox (FR-10) — Веб-версия: тесты и проверка контракта
 
-Совместимость с Apiary: `^1.3.0`. Требуется React `>=18.2`.
+Репозиторий с тестами для проверки соответствия **веб-версии** компонента `omninotice-notification-feed` контракту Apiary (CONTRACT.md и приложения А–Г) в рамках задачи **«Лента уведомлений (Inbox) в Sigma — веб и моб. версия (FR-10)»**.
 
-**Карта:** [Подключение](#быстрое-подключение) · [Apiary-слот](#apiary-слот) ·
-[Запросы](#запросы) · [Настройки](#настройки) · [API](#api-пакета) ·
-[CSS-токены](#css-токены) · [Локальный просмотр](#локальный-просмотр)
+> ⚠️ **Границы проверки:** проверена **только веб-версия**. Мобильная версия (React Native / WebView) в этом репозитории **не покрыта** — для неё требуется отдельное окружение (`@testing-library/react-native` + Jest) и отдельные тесты.
 
-## Быстрое подключение
+## 📊 Статус
 
-```tsx
-import {
-  NotificationFeedPage,
-  NotificationsFeedProvider,
-} from "omninotice-notification-feed";
-import "omninotice-notification-feed/style.css";
+- **Всего тестов:** 32
+- **Пройдено:** 32 ✅
+- **Провалено:** 0
+- **Файлов с тестами:** 11
+- **Найдено замечаний:** 6 (см. [BUG_REPORTS.md](./tests/BUG_REPORTS.md))
+- **Покрытие:** веб-версия FR-10
 
-export function Notifications() {
-  return (
-    <NotificationsFeedProvider>
-      <NotificationFeedPage />
-    </NotificationsFeedProvider>
-  );
-}
-```
+## 🚀 Быстрый старт
 
-До рендера зарегистрируйте в `@core/data` три провайдера из раздела
-[Запросы](#запросы), а в `@core/actions` — действие `mark-read`.
+### 1. Клонирование
 
-### Apiary-слот
+```bash
+git clone https://github.com/vagap85/sigma-inbox-fr-10-web.git
+cd sigma-inbox-fr-10-web
+2. Установка зависимостей
+bash
+npm install
+3. Генерация моков
+Перед запуском тестов нужно сгенерировать моки из репозитория компонента:
 
-В точке входа приложения импортируйте регистрацию и стили:
+bash
+npm run generate:mock https://github.com/OrdynsDav/omninotice-notification-feed
+4. Запуск тестов
+bash
+npm run test
+Или в watch-режиме:
 
-```ts
-import "omninotice-notification-feed/register-all";
-import "omninotice-notification-feed/style.css";
-```
+bash
+npm run test:watch
+С покрытием:
 
-Добавьте компонент в конфигурацию слота:
+bash
+npm run test:coverage
+📁 Структура
+text
+tests/
+├── setup.ts                       # настройка Testing Library, cleanup, сброс failNext
+├── mocks/
+│   ├── core-hive.ts               # типы SlotComponentProps
+│   └── core-hive-react.ts         # мок registerSlotComponent
+├── BUG_REPORTS.md                 # баг-репорты по найденным замечаниям
+├── contract.test.ts               # 10 тестов — §3, §5 (запреты, обязательные требования)
+├── registration.test.ts           # 1 тест — §3.2 регистрация
+├── providers.test.tsx             # 1 тест — §3.4 провайдеры данных
+├── actions.test.tsx               # 1 тест — §3.6 mark-read
+├── render.test.tsx                # 3 теста — A.5 loading/error/empty
+├── settings.test.tsx              # 2 теста — §3.1 настройки
+├── pagination.test.tsx            # 1 тест — пагинация
+├── a11y.test.tsx                  # 2 теста — A.3 доступность
+├── a6-cancellation.test.tsx       # 2 теста — A.6 отмена запросов
+├── a7-caching.test.tsx            # 2 теста — A.7 TTL (фиксирует замечание)
+└── a12-documentation.test.ts      # 7 тестов — A.12/A.15 документация
+🧪 Что проверяется
+Файл	Кол-во	Что проверяет
+contract.test.ts	10	§3 (обязательные требования), §5 (запреты)
+registration.test.ts	1	§3.2 registerSlotComponent('notifications')
+providers.test.tsx	1	§3.4 вызовы callProvider для list и counts
+actions.test.tsx	1	§3.6 runAction({ type: 'mark-read', id })
+render.test.tsx	3	A.5 loading / error / empty
+settings.test.tsx	2	§3.1 pageTitle/pageSubtitle, sidebarBackdrop
+pagination.test.tsx	1	Пагинация (page: 2 при loadMore)
+a11y.test.tsx	2	A.3 заголовок, aria-pressed у вкладок
+a6-cancellation.test.tsx	2	A.6 AbortSignal для деталей, отмена при закрытии
+a7-caching.test.tsx	2	A.7 TTL (фиксирует замечание BUG-005)
+a12-documentation.test.ts	7	A.12/A.15 README, CHANGELOG, package.json
+🚫 Что НЕ проверяется (границы)
+Мобильная версия (React Native / WebView) — требуется @testing-library/react-native + Jest, отдельные тесты.
 
-```ts
-{ name: "sidebar", components: [{ id: "notifications", order: 2 }] }
-```
+Интеграция с реальным бэкендом — используется dev-мок (src/mock/data.ts).
 
-Обёртка `NotificationsFeedProvider` и регистрация компонента выполняются пакетом.
-Хост должен предоставлять `@core/hive`, `@core/data` и `@core/actions`.
+Кросс-браузерность — тесты в jsdom, не в реальных браузерах.
 
-## Запросы
+📋 Баг-репорты
+Все найденные замечания оформлены в BUG_REPORTS.md:
 
-Пакет вызывает провайдеры через `callProvider`. Зарегистрируйте обработчики в
-`@core/data` под этими именами:
+ID	Серьёзность	Пункт	Кратко
+BUG-001	🟡 Средняя	§3.7, A.8	Хардкод текстов, не через t()
+BUG-002	🟢 Низкая	§5.1	fetch в apiFetch.ts (dev-only)
+BUG-003	🟡 Средняя	A.3	Спиннер без role="status"
+BUG-004	🟡 Средняя	A.3	Карточки без role="listitem"
+BUG-005	🟢 Низкая	A.7	TTL не передаётся в callProvider
+BUG-006	🟢 Низкая	A.15	Нет CHANGELOG.md
+🛠 Технологии
+Тест-раннер: Vitest
 
-| Провайдер | Параметры | Результат |
-| --- | --- | --- |
-| `notifications.doocot.list` | `{ page: number }` | Ответ списка |
-| `notifications.doocot.counts` | нет | Ответ счётчиков |
-| `notifications.doocot.details` | `{ messageId: string, signal?: AbortSignal }` | Ответ деталей |
+DOM-окружение: jsdom
 
-Пример обработчиков для хоста (замените URL на адреса своего API), которые
-затем нужно зарегистрировать в `@core/data`:
+Рендер-тесты: @testing-library/react
 
-```ts
-import { NOTIFICATION_PROVIDERS } from "omninotice-notification-feed";
+Пользовательские события: @testing-library/user-event
 
-async function getJson(url: string, signal?: AbortSignal) {
-  const response = await fetch(url, { signal });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  return response.json();
-}
+Проверки DOM: @testing-library/jest-dom
 
-export const notificationProviders = {
-  [NOTIFICATION_PROVIDERS.list]: ({ page }: { page: number }) =>
-    getJson(`/my/chits?page=${page}`),
-  [NOTIFICATION_PROVIDERS.counts]: () =>
-    getJson("/my/chits/status"),
-  [NOTIFICATION_PROVIDERS.details]: ({
-    messageId,
-    signal,
-  }: {
-    messageId: string;
-    signal?: AbortSignal;
-  }) =>
-    getJson(
-      `/my/chit/${encodeURIComponent(messageId)}`,
-      signal,
-    ),
-};
-```
+🔗 Ссылки
+Контракт: CONTRACT.md, CONTRACT-APPENDIX-1..4
 
-Каждый обработчик должен вернуть JSON-ответ в формате ниже. Если в приложении
-уже есть API-клиент, используйте его вместо `fetch`.
+Компонент (веб): omninotice-notification-feed
 
-Провайдер деталей должен передавать `signal` в сетевой запрос, например
-`fetch(url, { signal })`: при закрытии панели запрос отменяется.
+Задача: FR-10 — Лента уведомлений (Inbox) в Sigma — веб и моб. версия
 
-Все ответы имеют вид `{ detail, data, info }`. `data` — массив:
-
-- список: элементы с `status`, `created_date`, `modified_date`, `is_read` и
-  `chit` (`message_id`, `message_type`, `title`, `description`, `picture`,
-  `action`);
-- счётчики: первый элемент — `{ total_count, unread_count }`;
-- детали: элемент списка с дополнительными `chit.text`, `chit.action` и
-  `chit.extra`.
-
-`info` содержит `api_version`, `count`, `total`, `page`, `page_size`.
-Пустая страница завершает загрузку. Если стандартная пагинация по
-`total_count` не подходит, передайте `getHasMore(info, loadedCount)` в
-`NotificationsFeedProvider`.
-
-После успешной загрузки деталей непрочитанного уведомления и при нажатии на
-действие карточки пакет вызывает `runAction({ type: "mark-read", id })`, где
-`id` — `messageId`. Зарегистрируйте обработчик этого действия в `@core/actions`:
-
-```ts
-async function markRead({ id }: { id: string }) {
-  const response = await fetch(
-    `/my/${encodeURIComponent(id)}/read`,
-    {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chit_id: id }),
-    },
-  );
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-}
-```
-
-`id` передаётся как `chit_id` в URL и JSON-теле запроса. Подключите функцию к
-действию `mark-read` в конфигурации `@core/actions`. При ошибке пакет показывает
-сообщение, а локально отмечает уведомление прочитанным только после успеха.
-
-## Настройки
-
-Передайте настройки в `NotificationsFeedProvider`:
-
-```tsx
-<NotificationsFeedProvider
-  settings={{
-    pageTitle: "Уведомления",
-    pageSubtitle: "Новости и задачи",
-    autoLoadUnread: true,
-    sidebarBackdrop: true,
-  }}
->
-  <NotificationFeedPage header={<MyHeader />} />
-</NotificationsFeedProvider>
-```
-
-| Настройка | По умолчанию | Назначение |
-| --- | --- | --- |
-| `pageTitle` | `Уведомления` | Заголовок |
-| `pageSubtitle` | описание ленты | Подзаголовок |
-| `autoLoadUnread` | `true` | Загружать страницы, пока не найдутся непрочитанные |
-| `sidebarBackdrop` | `true` | Затемнение за панелью деталей |
-| `defaultIcon` | иконка уведомления | Иконка без изображения |
-| `notificationState` | тексты пакета | Содержимое состояний `empty`, `error`, `allRead`, `noUnreadLoaded` |
-
-Для `notificationState` можно переопределить `title`, `description`, `btn`
-(`title`, `onClick`), `className` и `icon`. Настройки объединяются с
-значениями по умолчанию. `defaultIcon` и `notificationState` доступны при
-прямом использовании `NotificationsFeedProvider`; в `SlotComponentProps.settings`
-поддерживаются только первые четыре настройки таблицы.
-
-`NotificationFeedPage` принимает необязательный `header` — React-узел перед
-заголовком страницы.
-
-## API пакета
-
-Из корневого импорта экспортируются `NotificationsFeedProvider`,
-`NotificationFeedPage`, `SettingsOverrides`, `GetHasMore`, `NOTIFICATION_PROVIDERS`,
-типы ответов и уведомлений (`NotificationsResponse`, `Notification`,
-`NotificationCountsResponse`, `NotificationDetailsResponse`) и соответствующие
-схемы (`NotificationsResponseSchema`, `NotificationCountsResponseSchema`,
-`NotificationDetailsResponseSchema` и схемы элементов). Детали показывают
-`chit.text`, а при его отсутствии — `chit.description`; `chit.action`
-отображается как ссылка.
-
-## CSS-токены
-
-Токены пакета из `NotificationFeedPage.module.css`:
-
-```css
---omni-main-bg: var(--color-surface, #f5f6f9); /* фон страницы */
---omni-primary: var(--color-primary, #487bfe); /* основной цвет */
---omni-primary-hover: var(
-    --color-primary-hover,
-    hsl(from var(--omni-primary) h s calc(l - 10))
-); /* цвет при наведении */
---omni-primary-text: var(--color-text-primary, #0c151d); /* основной текст */
---omni-secondary-text: var(--color-text-secondary, #767a7f); /* вторичный текст */
---omni-breadcumbs-icon-color: var(--color-icon, #4a5665); /* цвет иконки */
---omni-sidebar-box-shadow: var(
-    --color-shadow,
-    0px 0px 1px 0px #00000066,
-    -8px 8px 24px -8px #00000029
-); /* тень панели */
---omni-state-box-shadow: var(--color-shadow, 0px 0px 1px #0000004D); /* тень состояния */
---omni-nf-bg: var(--color-surface, #ffffff); /* фон карточки */
---omni-nf-bg-hover: var(
-    --color-bg-hover,
-    color-mix(in srgb, var(--omni-primary) 12%, white)
-); /* фон при наведении */
---omni-nf-icon: var(--omni-primary); /* цвет иконки уведомления */
---omni-nf-icon-error: var(--color-danger, #e65443); /* цвет иконки ошибки */
---omni-nf-icon-bg: var(
-    --color-primary-soft,
-    color-mix(in srgb, var(--omni-nf-icon) 25%, white)
-); /* фон иконки уведомления */
---omni-nf-icon-bg-error: var(
-    --color-danger-soft,
-    color-mix(in srgb, var(--omni-nf-icon-error) 25%, white)
-); /* фон иконки ошибки */
---omni-border-color: var(--color-border, #eceef4); /* цвет границы */
---omni-border-hover: var(--color-text-primary, #0c151d); /* граница при наведении */
---omni-radius: var(--radius-md, 8px); /* радиус скругления */
---omni-container-padding-inline: 24px 20px; /* отступы контейнера */
---omni-nf-icon-container-size: 56px; /* размер контейнера иконки */
---omni-nf-icon-chevron-size: 24px; /* размер шеврона */
---omni-tabs-margin-block: 32px; /* отступ вкладок */
---omni-transition: 0.15s ease-in; /* скорость перехода */
-```
-
-В состоянии ошибки `NotificationsState.module.css` переопределяет:
-
-```css
---omni-nf-icon: var(--omni-nf-icon-error); /* цвет иконки ошибки */
---omni-nf-icon-bg: var(--omni-nf-icon-bg-error); /* фон иконки ошибки */
-```
-
-Стили компонентов изолированы CSS Modules.
-
-## Локальный просмотр
-
-`npm run dev` запускает превью с моками из `public/mock`. Создайте их командой
-`npm run generate:mock`; после клонирования её нужно выполнить один раз.
+📝 Лицензия
+MIT
